@@ -6,74 +6,122 @@ const isMobileUserAgent = () => {
   );
 };
 
-class MouseCircleAnimation {
-  constructor({ svg, circle, width, height }) {
-    // Only one instance can be on page
-    if (!MouseCircleAnimation._instance) {
-      MouseCircleAnimation._instance = this;
-    }
-
-    this.svg = svg;
-    this.circle = circle;
+class Screen {
+  constructor({ width, height }) {
     this.screen = { width, height };
-    this.mouse = { x: 0, y: 0 };
-    this.mouseStored = Object.assign({}, this.mouse);
-
-    this.init();
-
-    return MouseCircleAnimation._instance;
   }
+}
 
-  init = () => {
-    // Stop using animation for mobile
-    if (isMobileUserAgent()) {
-      return this.svg.remove();
-    }
-
-    const { width, height } = this.screen;
-
-    // Set up svg attributes
-    gsap.set(this.circle, {transformOrigin: "50% 50%"});
-    this.svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-
-    window.addEventListener("mousemove", this.setMouseCoords);
-
-    // And use the ticker to update the rotation accordingly
-    gsap.ticker.add(this.animateCircle);
-  };
+class BrowserScreen extends Screen {
+  constructor({ width, height }) {
+    super({ width, height });
+    this.mouse = { x: 0, y: 0 };
+  }
 
   setMouseCoords = (event) => {
     this.mouse.x = event.clientX;
     this.mouse.y = event.clientY;
   };
 
-  animateCircle = () => {
-    if (
-      this.mouseStored.x === this.mouse.x &&
-      this.mouseStored.y === this.mouse.y
-    )
-      return;
+  trackMousePosition() {
+    window.addEventListener("mousemove", this.setMouseCoords);
+  }
+}
 
-    const animationConfig = {
-      x: this.mouse.x,
-      y: this.mouse.y,
-      ease: Elastic.easeOut.config(1.25, 1),
-      duration: 0.5,
-      delay: 0.1,
-      opacity: 1,
-    };
+class Svg {
+  constructor(svg) {
+    this.svg = svg;
+  }
 
-    gsap.to(this.circle, animationConfig);
-
-    // Store the mouse position for the next tick
-    this.mouseStored.x = this.mouse.x;
-    this.mouseStored.y = this.mouse.y;
+  setupSvgViewBox = ({ width, height }) => {
+    this.svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   };
 }
 
-new MouseCircleAnimation({
-  svg: document.querySelector("svg"),
-  circle: document.querySelector("circle"),
-  width: window.innerWidth,
-  height: window.innerHeight,
+class Circle extends Svg {
+  constructor(svg) {
+    super(svg);
+    this.circle = svg.querySelector("circle");
+  }
+
+  setupCircleTranformOrigin = (transformOrigin) => {
+    gsap.set(this.circle, { transformOrigin });
+  };
+}
+
+class CircleAnimation {
+  constructor({ screen, circle }) {
+    this.screen = screen;
+    this.circle = circle;
+    this.mouseStored = { ...this.screen.mouse };
+
+    this.init();
+  }
+
+  init = () => {
+    // Stop using animation for mobile
+    if (isMobileUserAgent()) {
+      return this.removeSvg();
+    }
+
+    const { screen } = this.screen;
+    const { width, height } = screen;
+
+    this.setupSvg({ width, height, transformOrigin: "50% 50%" });
+    this.trackMousePosition();
+    this.runAnimation();
+  };
+
+  runAnimation = () => {
+    gsap.ticker.add(this.animateCircle);
+  };
+
+  animateCircle = () => {
+    if (this.isStoredMousePosition()) return;
+
+    const { circle } = this.circle;
+    const { mouse } = this.screen;
+    const animationConfig = {
+      ...CircleAnimation.baseAnimationConfig,
+      ...mouse,
+    };
+
+    gsap.to(circle, animationConfig);
+    this.mouseStored = { ...mouse };
+  };
+
+  setupSvg = ({ width, height, transformOrigin }) => {
+    this.circle.setupSvgViewBox({ width, height });
+    this.circle.setupCircleTranformOrigin(transformOrigin);
+  };
+
+  removeSvg = () => {
+    this.circle.svg.remove();
+  };
+
+  trackMousePosition = () => {
+    this.screen.trackMousePosition();
+  };
+
+  isStoredMousePosition = () => {
+    return (
+      this.mouseStored.x === this.screen.mouse.x &&
+      this.mouseStored.y === this.screen.mouse.y
+    );
+  };
+}
+
+CircleAnimation.baseAnimationConfig = {
+  ease: Elastic.easeOut.config(1.25, 1),
+  duration: 0.5,
+  delay: 0.1,
+  opacity: 1,
+};
+
+new CircleAnimation({
+  screen: new BrowserScreen({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  }),
+  circle: new Circle(document.querySelector("svg")),
 });
