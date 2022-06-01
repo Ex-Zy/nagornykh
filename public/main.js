@@ -80,18 +80,15 @@ class BaseViewSetup {
   constructor({ screenInstance, svgCircleInstance }) {
     this.screenInstance = screenInstance;
     this.svgCircleInstance = svgCircleInstance;
-    this.init();
+    this.setup();
   }
 
-  init = () => {
+  setup = () => {
     // Remove svg for mobile
     if (this.screenInstance.isMobile()) {
       return this.svgCircleInstance.remove();
     }
-    this.setup();
-  };
 
-  setup = () => {
     const { width, height } = this.screenInstance.screen;
     const svgConfig = { width, height, transformOrigin: "50% 50%" };
 
