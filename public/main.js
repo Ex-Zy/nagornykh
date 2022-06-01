@@ -76,11 +76,10 @@ class SvgCircle extends Svg {
   };
 }
 
-class Animation {
+class BaseViewSetup {
   constructor({ screenInstance, svgCircleInstance }) {
     this.screenInstance = screenInstance;
     this.svgCircleInstance = svgCircleInstance;
-
     this.init();
   }
 
@@ -89,16 +88,22 @@ class Animation {
     if (this.screenInstance.isMobile()) {
       return this.svgCircleInstance.remove();
     }
-    this.baseSetup();
-    this.runAnimation();
+    this.setup();
   };
 
-  baseSetup = () => {
+  setup = () => {
     const { width, height } = this.screenInstance.screen;
     const svgConfig = { width, height, transformOrigin: "50% 50%" };
 
     this.svgCircleInstance.setupSvg({ ...svgConfig });
     this.screenInstance.trackMousePosition();
+  };
+}
+
+class Animation extends BaseViewSetup {
+  constructor({ screenInstance, svgCircleInstance }) {
+    super({ screenInstance, svgCircleInstance });
+    this.runAnimation();
   }
 
   runAnimation = () => {
