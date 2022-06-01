@@ -5,7 +5,7 @@ class Screen {
     this.screen = { width, height };
   }
 
-  isMobileUserAgent = () => {
+  isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
@@ -86,7 +86,7 @@ class Animation {
 
   init = () => {
     // Remove svg for mobile
-    if (this.screenInstance.isMobileUserAgent()) {
+    if (this.screenInstance.isMobile()) {
       return this.svgCircleInstance.remove();
     }
     this.baseSetup();
