@@ -1,5 +1,11 @@
 {
+  "name": "nagornykh",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
     "firebase": "^9.6.9"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
