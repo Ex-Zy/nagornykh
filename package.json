@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "firebase": "^9.6.9"
+    "firebase": "^9.6.9",
+    "gsap": "^3.10.4"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.17.7",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-nunjucks": "^5.1.0",
+    "gulp-pretty-html": "^2.0.10"
   }
 }
