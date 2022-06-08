@@ -1,14 +1,8 @@
-import { parallel, series } from "gulp";
-import clean from "./gulp/clean";
-import buildHtml from "./gulp/html";
-import scripts from "./gulp/scripts";
-import files from "./gulp/files";
+import { series } from "gulp";
+import build from "./gulp/build";
+import watcher from "./gulp/watcher";
 
 export default series(
-  clean, 
-  parallel(
-    buildHtml, 
-    scripts, 
-    files
-  )
+  build, 
+  watcher
 );
