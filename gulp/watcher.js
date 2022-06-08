@@ -1,6 +1,5 @@
 import { watch } from "gulp";
 import build from "./build";
-import clean from "./clean";
 
 function watcher() {
   watch([

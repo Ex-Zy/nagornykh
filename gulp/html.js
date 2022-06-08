@@ -1,4 +1,4 @@
-import { src, dest, series } from "gulp";
+import { src, dest } from "gulp";
 import nunjucks from "gulp-nunjucks";
 import prettyHtml from "gulp-pretty-html";
 
