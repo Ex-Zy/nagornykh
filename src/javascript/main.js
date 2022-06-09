@@ -1,6 +1,6 @@
 "use strict";
 
-import gsap from "gsap";
+import { gsap, Elastic } from "gsap";
 
 class Screen {
   constructor({ width, height }) {

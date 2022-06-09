@@ -15,6 +15,8 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-nunjucks": "^5.1.0",
-    "gulp-pretty-html": "^2.0.10"
+    "gulp-pretty-html": "^2.0.10",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack-stream": "^7.0.0"
   }
 }
