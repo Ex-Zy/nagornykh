@@ -1,18 +1,10 @@
-import { parallel, series } from "gulp";
-import clean from "./clean";
+import { parallel } from "gulp";
 import buildHtml from "./html";
 import scripts from "./scripts";
-import files from "./files";
+import copy from "./copy";
 
 function build(done) {
-  series(
-    clean, 
-    parallel(
-      buildHtml, 
-      scripts, 
-      files
-    )
-  )(done);
+  parallel(buildHtml, scripts, copy)(done);
 }
 
 export default build;

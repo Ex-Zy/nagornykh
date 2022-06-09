@@ -1,10 +1,17 @@
 import { parallel, series } from "gulp";
+import clean from "./gulp/clean";
 import build from "./gulp/build";
 import server from "./gulp/server";
-import watcher from "./gulp/watcher";
+import watch from "./gulp/watch";
 
 function defaultTask(cb) {
-  parallel(series(build, watcher), server)(cb);
+  parallel(build, watch, server)(cb);
 }
 
-export {defaultTask as default};
+export { 
+  clean, 
+  build, 
+  server, 
+  watch, 
+  defaultTask as default
+};

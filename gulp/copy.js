@@ -1,8 +1,8 @@
 import { src, dest } from "gulp";
 
-function files() {
+function copy() {
   return src(["src/files/**", "src/styles/**"])
     .pipe(dest("public/"))
 }
 
-export default files;
+export default copy;
