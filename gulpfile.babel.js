@@ -9,7 +9,14 @@ import styles from "./gulp/tasks/styles";
 import copy from "./gulp/tasks/copy";
 
 function defaultTask(cb) {
-  parallel(build, watch, server)(cb);
+  series(
+    clean,
+    parallel(
+      build, 
+      server,
+      watch,
+    ),
+  )(cb)
 }
 
 export { 
