@@ -5,9 +5,7 @@ function server() {
 
   bs.init({server: {baseDir: 'public'}});
 
-  bs.watch("public/*.html").on("change", bs.reload);
-  bs.watch("public/*.js").on("change", bs.reload);
-  bs.watch("public/*.css").on("change", bs.reload);
+  bs.watch("public/*.{html,css,js}").on("change", bs.reload);
 }
 
 export default server;
