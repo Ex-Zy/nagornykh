@@ -24,26 +24,32 @@
 }
 
 body {
+  color: #eaebed;
   color: var(--text-color);
+  background-color: #364c96;
   background-color: var(--bg-color);
 }
 
 h1,
 u {
+  color: #ff8496;
   color: var(--accent-color);
 }
 
 mark,
 a {
+  color: #eaebed;
   color: var(--text-color);
 }
 
 mark,
 a:after {
+  background-color: #ff8496;
   background-color: var(--accent-secondary-color);
 }
 
 .circle {
+  fill: rgba(234, 235, 237, 0.6);
   fill: var(--circle-color);
 }
 /* END color palete */
