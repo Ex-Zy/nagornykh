@@ -1,9 +1,9 @@
 const config = {
   src: {
     root: "src/",
-    templates: "src/templates/",
-    styles: "src/styles/",
-    javascript: "src/javascript/",
+    html: "src/templates/",
+    css: "src/styles/",
+    js: "src/javascript/",
     files: "src/files/",
   },
   public: {

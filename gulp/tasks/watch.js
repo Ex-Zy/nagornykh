@@ -1,17 +1,13 @@
 import { watch as _watch } from "gulp";
-import build from "./build";
 import configGulp from "../config";
+import html from "./html";
+import styles from "./styles";
+import scripts from "./scripts";
 
 function watch() {
-  _watch(
-    [
-      configGulp.src.files + "*",
-      configGulp.src.javascript + "*",
-      configGulp.src.styles + "*",
-      configGulp.src.templates + "*",
-    ],
-    build
-  );
+  _watch(configGulp.src.html + "**", html);
+  _watch(configGulp.src.css + "**", styles);
+  _watch(configGulp.src.js + "**", scripts);
 }
 
 export default watch;
