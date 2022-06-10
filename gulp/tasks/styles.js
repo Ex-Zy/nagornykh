@@ -18,7 +18,7 @@ const plugins = [
 ];
 
 function styles() {
-  return src(configGulp.src.css + "*.{pcss,css}")
+  return src(configGulp.src.css + "**/*.{pcss,css}")
     .pipe(changed(configGulp.public.root))
     .pipe(gulpPlumber())
     .pipe(postcss(plugins))
