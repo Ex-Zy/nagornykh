@@ -6,6 +6,8 @@ import nested from "postcss-nested";
 import gulpPlumber from "gulp-plumber";
 import configGulp from "../config";
 import changed from "gulp-changed";
+import atImport from "postcss-import";
+import simpleVars from "postcss-simple-vars";
 
 const plugins = [
   postcssPresetEnv({
@@ -15,10 +17,12 @@ const plugins = [
     },
   }),
   nested,
+  atImport,
+  simpleVars,
 ];
 
 function styles() {
-  return src(configGulp.src.css + "**/*.{pcss,css}")
+  return src(configGulp.src.css + "style.pcss")
     .pipe(changed(configGulp.public.root))
     .pipe(gulpPlumber())
     .pipe(postcss(plugins))

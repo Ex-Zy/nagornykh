@@ -1,0 +1,40 @@
+$duration: 0.8s;
+$timingFunction: linear;
+
+:root {
+  --bg-color: #364c96;
+  --text-color: #eaebed;
+  --accent-color: #ff8496;
+  --accent-secondary-color: #ff8496;
+  --circle-color: rgba(234, 235, 237, 0.6);
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color $duration $timingFunction, color $duration $timingFunction;
+}
+
+h1, u {
+  color: var(--accent-color);
+  transition: color $duration $timingFunction;
+}
+
+mark, a {
+  color: var(--text-color);
+  transition: color $duration $timingFunction;
+}
+
+mark {
+  background-color: var(--accent-secondary-color);
+  transition: background-color $duration $timingFunction;
+}
+
+a:after {
+  top: 200ms cubic-bezier(0, 0.8, 0.13, 1), background-color $duration $timingFunction;
+}
+
+.circle {
+  fill: var(--circle-color);
+  transition: fill $duration $timingFunction;
+}

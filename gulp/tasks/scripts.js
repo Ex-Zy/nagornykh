@@ -7,7 +7,7 @@ import changed from "gulp-changed";
 
 function scripts() {
   return src(configGulp.src.js + "main.js", { allowEmpty: true })
-    .pipe(changed(configGulp.public.root))
+    // .pipe(changed(configGulp.public.root))
     .pipe(gulpPlumber())
     .pipe(webpack(configWebpack))
     .pipe(dest(configGulp.public.root));
