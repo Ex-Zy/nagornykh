@@ -20,8 +20,29 @@ const THEMES = {
     "--accent-secondary-color": "#ff8496",
     "--circle-color": "rgba(234, 235, 237, 0.6)",
   },
+  sunset: {
+    "--bg-color": "#355c7d",
+    "--text-color": "#ff9677",
+    "--accent-color": "#ff7582",
+    "--accent-secondary-color": "#c56d86",
+    "--circle-color": "rgba(197, 109, 134, 0.5)",
+  },
+  cabana: {
+    "--bg-color": "#ffd960",
+    "--text-color": "#236ad6",
+    "--accent-color": "#d7415d",
+    "--accent-secondary-color": "#2095f2",
+    "--circle-color": "rgb(32, 149, 242, 0.4)",
+  },
+  gotham: {
+    "--bg-color": "#243b67",
+    "--text-color": "#eaebed",
+    "--accent-color": "#c27dfc",
+    "--accent-secondary-color": "#6e5dcf",
+    "--circle-color": "rgb(194, 125, 252, 0.5)",
+  },
 };
 
-const ACTIVE_THEME = "theme3";
+const ACTIVE_THEME = "gotham";
 
 export { THEMES, ACTIVE_THEME };
