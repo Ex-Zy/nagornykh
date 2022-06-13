@@ -14,7 +14,6 @@ class ScreenMouseTracker extends Screen {
   constructor({ width, height }) {
     super({ width, height });
     this.mouse = { x: 0, y: 0 };
-    this.mouseStored = { ...this.mouse };
   }
 
   setMouseCoords = (event) => {
