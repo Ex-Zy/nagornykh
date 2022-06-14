@@ -1,18 +1,29 @@
 import { random, setRoot } from "./helpers";
 
 class ThemeSwitcher {
-  constructor({ themes, active, enableStorage, storageParam }) {
+  #timerID;
+
+  constructor({
+    themes,
+    active,
+    enableStorage,
+    storageParam,
+    enableRandom,
+    randomTime,
+  }) {
     this.themes = themes;
     this.enableStorage = enableStorage;
     this.storageParam = storageParam;
+    this.enableRandom = enableRandom;
+    this.randomTime = randomTime;
     this.setTheme(active);
   }
 
-  render = ({ enableRandom, time } = { enableRandom: false, time: 10000 }) => {
+  render = () => {
     setRoot(this.themes[this.active]);
 
-    if (enableRandom) {
-      this.#turnRandomTheme(time);
+    if (this.enableRandom) {
+      this.#turnRandomTheme(this.randomTime);
     }
   };
 
@@ -43,11 +54,26 @@ class ThemeSwitcher {
     return themes[random(min, max)];
   };
 
-  #turnRandomTheme = (time) => {
-    setInterval(() => {
-      this.setTheme(this.#randomTheme());
-      setRoot(this.themes[this.active]);
-    }, time);
+  #turnRandomTheme = () => {
+    this.#timerID = setInterval(this.#intervalHandler, this.randomTime);
+    this.#setTabVisibilityListener();
+  };
+
+  #setTabVisibilityListener = () => {
+    document.addEventListener("visibilitychange", this.#toggleIntervalHandler);
+  };
+
+  #toggleIntervalHandler = () => {
+    if (document.visibilityState === "visible") {
+      this.#timerID = setInterval(this.#intervalHandler, this.randomTime);
+    } else {
+      clearInterval(this.#timerID);
+    }
+  };
+
+  #intervalHandler = () => {
+    this.setTheme(this.#randomTheme());
+    setRoot(this.themes[this.active]);
   };
 }
 
