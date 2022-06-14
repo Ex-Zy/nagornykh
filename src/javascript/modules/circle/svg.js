@@ -1,5 +1,3 @@
-import { gsap } from "gsap";
-
 class Svg {
   constructor(svg) {
     this.svg = svg;
@@ -21,7 +19,7 @@ class SvgCircle extends Svg {
   };
 
   setupCircleTranformOrigin = (transformOrigin) => {
-    gsap.set(this.circle, { transformOrigin });
+    this.circle.style.transformOrigin = transformOrigin;
   };
 
   setupSvg = ({ width, height, transformOrigin }) => {

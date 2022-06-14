@@ -18,6 +18,7 @@ class Animation extends Canvas {
       ease: Elastic.easeOut.config(1.25, 1),
       duration: 0.5,
       delay: 0.1,
+      opacity: 'var(--circle-alpha)'
     });
     this.screenInstance.updateMouseStored({ ...mouse });
   };
