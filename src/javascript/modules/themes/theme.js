@@ -8,26 +8,34 @@ class ThemeSwitcher {
     this.setTheme(active);
   }
 
-  getActiveTheme = () => {
-    return this.enableStorage && this.getStorage()
-      ? this.getStorage()
-      : this.active;
+  render = ({ enableRandom, time } = { enableRandom: false, time: 10000 }) => {
+    setRoot(this.themes[this.active]);
+
+    if (enableRandom) {
+      this.#turnRandomTheme(time);
+    }
   };
 
   setTheme = (name) => {
     this.active = name;
-    this.enableStorage && this.setStorage(name);
+    this.enableStorage && this.#setStorage(name);
   };
 
-  setStorage = (name) => {
+  getActiveTheme = () => {
+    return this.enableStorage && this.#getStorage()
+      ? this.#getStorage()
+      : this.active;
+  };
+
+  #setStorage = (name) => {
     localStorage.setItem(this.storageParam, name);
   };
 
-  getStorage = () => {
+  #getStorage = () => {
     return localStorage.getItem(this.storageParam);
   };
 
-  randomTheme = () => {
+  #randomTheme = () => {
     const min = 0;
     const max = Object.keys(this.themes).length - 1;
     const themes = Object.keys(this.themes).sort();
@@ -35,19 +43,11 @@ class ThemeSwitcher {
     return themes[random(min, max)];
   };
 
-  turnRandomTheme = (time) => {
+  #turnRandomTheme = (time) => {
     setInterval(() => {
-      this.setTheme(this.randomTheme());
+      this.setTheme(this.#randomTheme());
       setRoot(this.themes[this.active]);
     }, time);
-  };
-
-  render = ({ enableRandom, time } = { enableRandom: false, time: 10000 }) => {
-    setRoot(this.themes[this.active]);
-
-    if (enableRandom) {
-      this.turnRandomTheme(time);
-    }
   };
 }
 
