@@ -3,13 +3,15 @@ import { random, setRoot } from "./helpers";
 class UiTheme {
   constructor({ themes, active, enableStorage, storageParam }) {
     this.themes = themes;
-    this.active = active;
     this.enableStorage = enableStorage;
     this.storageParam = storageParam;
+    this.setTheme(active);
   }
 
   getActiveTheme = () => {
-    return this.enableStorage ? this.getStorage() : this.active;
+    return this.enableStorage && this.getStorage()
+      ? this.getStorage()
+      : this.active;
   };
 
   setTheme = (name) => {
@@ -22,7 +24,7 @@ class UiTheme {
   };
 
   getStorage = () => {
-    localStorage.getItem(this.storageParam);
+    return localStorage.getItem(this.storageParam);
   };
 
   randomTheme = () => {
@@ -40,7 +42,7 @@ class UiTheme {
     }, time);
   };
 
-  render = ({ enableRandom, time } = { enableRandom: false, time: 3000 }) => {
+  render = ({ enableRandom, time } = { enableRandom: false, time: 10000 }) => {
     setRoot(this.themes[this.active]);
 
     if (enableRandom) {

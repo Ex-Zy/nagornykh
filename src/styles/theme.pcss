@@ -6,7 +6,8 @@ $timingFunction: linear;
   --text-color: #eaebed;
   --primary-color: #ff8496;
   --secondary-color: #ff8496;
-  --circle-color: rgba(234, 235, 237, 0.6);
+  --circle-color: #eaebed;
+  --circle-alpha: 0.6;
 }
 
 body {
@@ -37,5 +38,6 @@ a:after {
 
 .circle {
   fill: var(--circle-color);
-  transition: fill $duration $timingFunction;
+  opacity: var(--circle-alpha);
+  transition: fill $duration $timingFunction, opacity $duration $timingFunction;
 }

@@ -3,7 +3,7 @@ import { THEMES, ACTIVE_THEME } from "./config";
 
 const themeSwitcher = new UiTheme({
   themes: THEMES,
-  active: ACTIVE_THEME,
+  active: localStorage.getItem('theme') || ACTIVE_THEME,
   enableStorage: true,
   storageParam: "theme",
 });
