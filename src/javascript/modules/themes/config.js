@@ -31,14 +31,6 @@ const THEMES = {
     "--circle-color": "#ff7582",
     "--circle-alpha": "0.5",
   },
-  cabana: {
-    "--bg-color": "#fff",
-    "--text-color": "#236ad6",
-    "--primary-color": "#d7415d",
-    "--secondary-color": "#ffd960",
-    "--circle-color": "#d7415d",
-    "--circle-alpha": "0.4",
-  },
   gotham: {
     "--bg-color": "#243b67",
     "--text-color": "#eaebed",
@@ -66,9 +58,9 @@ const THEMES = {
   mutable: {
     "--bg-color": "#5778a3",
     "--text-color": "#e3e4e6",
-    "--primary-color": "#3b999b",
-    "--secondary-color": "#ee5873",
-    "--circle-color": "#3b999b",
+    "--primary-color": "#3bb3b5",
+    "--secondary-color": "#6eb4b5",
+    "--circle-color": "#3bb3b5",
     "--circle-alpha": "0.4",
   },
   dragon: {
