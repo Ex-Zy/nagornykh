@@ -28,11 +28,11 @@ const THEMES = {
     "--circle-color": "rgba(197, 109, 134, 0.5)",
   },
   cabana: {
-    "--bg-color": "#ffd960",
+    "--bg-color": "#fff",
     "--text-color": "#236ad6",
     "--accent-color": "#d7415d",
-    "--accent-secondary-color": "#2095f2",
-    "--circle-color": "rgb(32, 149, 242, 0.4)",
+    "--accent-secondary-color": "#ffd960",
+    "--circle-color": "rgb(255, 117, 130, 0.4)",
   },
   gotham: {
     "--bg-color": "#243b67",
