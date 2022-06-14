@@ -1,6 +1,6 @@
 import { random, setRoot } from "./helpers";
 
-class UiTheme {
+class ThemeSwitcher {
   constructor({ themes, active, enableStorage, storageParam }) {
     this.themes = themes;
     this.enableStorage = enableStorage;
@@ -30,9 +30,9 @@ class UiTheme {
   randomTheme = () => {
     const min = 0;
     const max = Object.keys(this.themes).length - 1;
-    const sortedKeys = Object.keys(this.themes).sort();
+    const themes = Object.keys(this.themes).sort();
 
-    return sortedKeys[random(min, max)];
+    return themes[random(min, max)];
   };
 
   turnRandomTheme = (time) => {
@@ -51,4 +51,4 @@ class UiTheme {
   };
 }
 
-export { UiTheme };
+export { ThemeSwitcher };
