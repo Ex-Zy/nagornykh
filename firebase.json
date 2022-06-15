@@ -6,6 +6,8 @@
       "gulpfile.babel.js",
       ".babelrc",
       ".browserslistrc",
+      "package-lock.json",
+      "package.json",
       "gulp",
       "src",
       "**/.*",
