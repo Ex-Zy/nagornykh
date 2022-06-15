@@ -3,8 +3,24 @@
     "public": "public",
     "ignore": [
       "firebase.json",
+      "gulpfile.babel.js",
+      ".babelrc",
+      ".browserslistrc",
+      "gulp",
+      "src",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(html|js|css|pdf)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      }
     ]
   }
 }
