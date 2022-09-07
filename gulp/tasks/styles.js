@@ -24,7 +24,20 @@ const plugins = [
 function styles() {
   return src(configGulp.src.css + "style.pcss")
     .pipe(changed(configGulp.public.root))
-    .pipe(gulpPlumber())
+    .pipe(
+      gulpPlumber({
+        errorHandler(err) {
+          console.log(`
+            Compile style error
+              Reason: ${err.reason}
+              File: ${err.file}
+              Plugin: ${err.plugin}
+              lineNumber: ${err.lineNumber}
+          `);
+          this.emit("end");
+        },
+      })
+    )
     .pipe(postcss(plugins))
     .pipe(rename({ extname: ".css" }))
     .pipe(dest(configGulp.public.root));
