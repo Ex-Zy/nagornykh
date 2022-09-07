@@ -7,7 +7,9 @@
     "gsap": "^3.10.4"
   },
   "scripts": {
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "dev": "gulp",
+    "build": "gulp build"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
