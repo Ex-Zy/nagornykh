@@ -1,4 +1,4 @@
-import { ThemeSwitcher } from "./theme";
+import { ThemeSwitcher } from "./setup";
 import { THEMES, ACTIVE_THEME } from "./config";
 
 const themeSwitcher = new ThemeSwitcher({
