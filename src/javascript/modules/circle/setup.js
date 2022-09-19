@@ -2,32 +2,29 @@ import AnimationService from "../../services/AnimationService";
 import { isMobile } from "../helpers";
 
 class Svg {
-  constructor() {
+  constructor(rawSvgTemplate) {
+    this.add(rawSvgTemplate);
     this.svg = document.querySelector("svg");
     this.circle = this.svg.querySelector("circle");
   }
+
+  add = (rawSvgTemplate) => {
+    document.body.insertAdjacentHTML("afterbegin", rawSvgTemplate);
+  };
 
   remove = () => {
     this.svg.remove();
   };
 
-  setupSvgViewBox = ({ width, height }) => {
+  setup = ({ width, height, transformOrigin }) => {
     this.svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-  };
-
-  setupCircleTranformOrigin = (transformOrigin) => {
     this.circle.style.transformOrigin = transformOrigin;
-  };
-
-  setupSvg = ({ width, height, transformOrigin }) => {
-    this.setupSvgViewBox({ width, height });
-    this.setupCircleTranformOrigin(transformOrigin);
   };
 }
 
 class Screen {
-  constructor() {
-    this.screen = { width: window.innerWidth, height: window.innerHeight };
+  constructor({ width, height }) {
+    this.screen = { width, height };
     this.mouse = { x: 0, y: 0 };
     this.mouseStored = { ...this.mouse };
   }
@@ -68,7 +65,7 @@ class Animation {
     const { width, height } = this.screenInstance.screen;
     const svgConfig = { width, height, transformOrigin: "50% 50%" };
 
-    this.svgCircleInstance.setupSvg({ ...svgConfig });
+    this.svgCircleInstance.setup({ ...svgConfig });
     this.screenInstance.trackMousePosition();
   };
 
