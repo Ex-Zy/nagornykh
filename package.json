@@ -7,7 +7,7 @@
     "gsap": "^3.10.4"
   },
   "scripts": {
-    "deploy": "firebase deploy",
+    "deploy": "npm run build && firebase deploy",
     "dev": "gulp",
     "build": "gulp build"
   },
