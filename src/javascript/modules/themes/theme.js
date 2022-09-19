@@ -1,4 +1,4 @@
-import { random, setRoot } from "./helpers";
+import { random, setRoot } from "../helpers";
 
 class ThemeSwitcher {
   #timerID;

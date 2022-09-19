@@ -3,7 +3,7 @@ import { THEMES, ACTIVE_THEME } from "./config";
 
 const themeSwitcher = new ThemeSwitcher({
   themes: THEMES,
-  active: localStorage.getItem('theme') || ACTIVE_THEME,
+  active: ACTIVE_THEME,
   enableStorage: true,
   enableRandom: true,
   randomTime: 15000,

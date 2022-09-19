@@ -113,6 +113,7 @@ const THEMES = {
   },
 };
 
-const ACTIVE_THEME = "gotham";
+const ACTIVE_THEME =
+  (localStorage && localStorage.getItem("theme")) || "gotham";
 
 export { THEMES, ACTIVE_THEME };

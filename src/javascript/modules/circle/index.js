@@ -1,10 +1,8 @@
-import { ScreenInstance } from "./screen";
-import { SvgCircleInstance } from "./svg";
-import Animation from "./animation";
+import { Animation, Svg, Screen } from "./setup";
 
 // create animation instance
-const screenInstance = new ScreenInstance({width: window.innerWidth, height: window.innerHeight});
-const svgCircleInstance = new SvgCircleInstance(document.querySelector("svg"));
+const screenInstance = new Screen();
+const svgCircleInstance = new Svg();
 const animationInstance = new Animation({ screenInstance, svgCircleInstance });
 
 // public api
