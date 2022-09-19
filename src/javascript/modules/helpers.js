@@ -4,18 +4,6 @@ export const isMobile = () => {
   );
 };
 
-export const setAttributes = (element, attributes) => {
-  for (const attr of Object.keys(attributes)) {
-    element.setAttribute(attr, attributes[attr]);
-  }
-};
-
-export const removeAttributes = (element, attributes) => {
-  for (const attr of Object.keys(attributes)) {
-    element.removeAttribute(attr, attributes[attr]);
-  }
-};
-
 export const random = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
 
