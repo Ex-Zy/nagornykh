@@ -1,7 +1,7 @@
-# nagornykh
-Business Card [nagornykh.me](https://nagornykh.me/)
+# My Digital CV
+[nagornykh.me](https://nagornykh.me/)
 
-## List of npm scripts
+## Npm scripts
 
 Scripts name          | Description                                                      
 :------------------|:----------------------------------
