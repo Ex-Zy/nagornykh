@@ -3,7 +3,7 @@ import gulpPlumber from "gulp-plumber";
 import webpack from "webpack-stream";
 import configWebpack from "../webpack/config";
 import configGulp from "../config";
-import changed from "gulp-changed";
+// import changed from "gulp-changed";
 
 function scripts() {
   return src(configGulp.src.js + "main.js", { allowEmpty: true })

@@ -22,9 +22,8 @@ class Svg {
   };
 }
 
-class Screen {
-  constructor({ width, height }) {
-    this.screen = { width, height };
+class Mouse {
+  constructor() {
     this.mouse = { x: 0, y: 0 };
     this.mouseStored = { ...this.mouse };
   }
@@ -51,23 +50,19 @@ class Screen {
 
 class Animation {
   constructor() {
-    this.screenInstance = new Screen({width: window.innerWidth, height: window.innerHeight });
-    this.svgCircleInstance = new Svg(`<svg><circle/></svg>`);
+    this.mouseInstance = new Mouse();
+    this.svgInstance = new Svg(`<svg><circle/></svg>`);
     this.setup();
   }
 
   setup = () => {
     // Remove svg for mobile
     if (isMobile()) {
-      return this.svgCircleInstance.remove();
+      return this.svgInstance.remove();
     }
 
-    const { width, height } = this.screenInstance.screen;
-
-    this.svgCircleInstance.setup({
+    this.svgInstance.setup({
       svgAttrs: {
-        width,
-        height,
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid slice",
       },
@@ -79,17 +74,17 @@ class Animation {
         transformOrigin: "50% 50%",
       },
     });
-    this.screenInstance.trackMousePosition();
+    this.mouseInstance.trackMousePosition();
   };
 
   #screenHandler = () => {
-    if (this.screenInstance.isStoredMousePosition()) return;
+    if (this.mouseInstance.isStoredMousePosition()) return;
 
-    const { circle } = this.svgCircleInstance;
-    const { mouse } = this.screenInstance;
+    const { circle } = this.svgInstance;
+    const { mouse } = this.mouseInstance;
 
     AnimationService.defineInitialParams(circle, { x: mouse.x, y: mouse.y });
-    this.screenInstance.saveLastMousePosition({ ...mouse });
+    this.mouseInstance.saveLastMousePosition({ ...mouse });
   };
 
   runAnimation = () => {
@@ -101,4 +96,4 @@ class Animation {
   };
 }
 
-export { Animation, Svg, Screen };
+export { Animation };

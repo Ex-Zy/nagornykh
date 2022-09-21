@@ -1,4 +1,4 @@
-import { Animation, Svg, Screen } from "./setup";
+import { Animation } from "./setup";
 
 const circleAnimation = new Animation();
 
