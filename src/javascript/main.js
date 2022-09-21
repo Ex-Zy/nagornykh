@@ -3,4 +3,4 @@ import circle from "./modules/circle";
 import themeSwitcher from "./modules/themes";
 
 circle.runAnimation();
-themeSwitcher.render();
+themeSwitcher.turnRandomTheme();

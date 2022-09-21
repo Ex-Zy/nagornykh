@@ -6,57 +6,45 @@ class ThemeSwitcher {
   constructor({
     themes,
     active,
-    enableStorage,
-    storageParam,
-    enableRandom,
+    enableStorage = true,
+    storageParam = "theme",
     randomTime,
   }) {
     this.themes = themes;
+    this.viewedThemes = [];
     this.enableStorage = enableStorage;
     this.storageParam = storageParam;
-    this.enableRandom = enableRandom;
     this.randomTime = randomTime;
     this.setTheme(active);
   }
 
-  render = () => {
-    setRoot(this.themes[this.active]);
-
-    if (this.enableRandom) {
-      this.#turnRandomTheme(this.randomTime);
-    }
-  };
-
   setTheme = (name) => {
-    this.active = name;
-    this.enableStorage && this.#setStorage(name);
+    this.active = name || "gotham";
+    this.enableStorage && localStorage.setItem(this.storageParam, this.active);
+    this.viewedThemes.push(this.active);
+    setRoot(this.themes[this.active]);
   };
 
-  getActiveTheme = () => {
-    return this.enableStorage && this.#getStorage()
-      ? this.#getStorage()
-      : this.active;
-  };
-
-  #setStorage = (name) => {
-    localStorage.setItem(this.storageParam, name);
-  };
-
-  #getStorage = () => {
-    return localStorage.getItem(this.storageParam);
+  turnRandomTheme = () => {
+    this.#timerID = setInterval(this.#intervalHandler, this.randomTime);
+    this.#setTabVisibilityListener();
   };
 
   #randomTheme = () => {
-    const min = 0;
-    const max = Object.keys(this.themes).length - 1;
     const themes = Object.keys(this.themes).sort();
+    const filteredThemes = themes.filter((t) => !this.viewedThemes.includes(t));
+    const random = Math.floor(Math.random() * filteredThemes.length);
 
-    return themes[random(min, max)];
-  };
+    if (filteredThemes.length > 1) {
+      return filteredThemes[random];
+    }
 
-  #turnRandomTheme = () => {
-    this.#timerID = setInterval(this.#intervalHandler, this.randomTime);
-    this.#setTabVisibilityListener();
+    if (filteredThemes.length === 1) {
+      this.viewedThemes = [];
+      return filteredThemes[random];
+    }
+
+    return null;
   };
 
   #setTabVisibilityListener = () => {
@@ -73,7 +61,6 @@ class ThemeSwitcher {
 
   #intervalHandler = () => {
     this.setTheme(this.#randomTheme());
-    setRoot(this.themes[this.active]);
   };
 }
 
