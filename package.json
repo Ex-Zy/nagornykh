@@ -29,6 +29,7 @@
     "postcss-preset-env": "^7.7.1",
     "postcss-simple-vars": "^6.0.3",
     "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.91.0",
     "webpack-stream": "^7.0.0"
   }
 }
